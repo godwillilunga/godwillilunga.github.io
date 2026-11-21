@@ -36,6 +36,13 @@ window.SITE = {
     cv: "", // e.g. "files/CV.pdf"
   },
 
+  news: [
+    { date: "2026-11", text: "Launched my academic website." },
+    { date: "2026-08", text: "Presented “Nonstandard Finite Difference Schemes for Uncertain Epidemic Dynamics: From Fuzzy ODEs to AI-Enhanced Discretization”." },
+    { date: "2026", text: "First-author systematic review on speech dataset creation in low-resource contexts published in Procedia Computer Science." },
+    { date: "2025", text: "Paper on evacuee categorisation in agent-based fire evacuation simulation published in IEEE Access." },
+  ],
+
   /* PUBLICATIONS update automatically every day from OpenAlex + ORCID
      (GitHub Action → assets/data/publications.json). You don't edit them here.
      Use these settings only to fine-tune what is shown. Match papers by DOI. */
