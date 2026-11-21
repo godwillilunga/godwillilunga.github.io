@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=3">
   <script>
     try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
@@ -59,9 +59,17 @@
     <!-- ABOUT -->
     <section class="section" id="about">
       <div class="container about">
-        <div class="about__photo">
-          <img src="assets/img/portrait-about.jpg?v=2" alt="Godwill W.K. Ilunga" loading="lazy">
-        </div>
+        <figure class="about__photo sim" aria-label="Animated agent-based epidemic simulation">
+          <canvas id="simCanvas" aria-hidden="true"></canvas>
+          <figcaption class="sim__cap">
+            <span class="sim__title">Agent-based epidemic model · SIR</span>
+            <span class="sim__legend">
+              <span><i class="k k--s"></i>Susceptible <b id="simS">0</b></span>
+              <span><i class="k k--i"></i>Infected <b id="simI">0</b></span>
+              <span><i class="k k--r"></i>Recovered <b id="simR">0</b></span>
+            </span>
+          </figcaption>
+        </figure>
         <div>
           <h2 class="section__title">About</h2>
           <div id="bio" class="prose"></div>
@@ -121,7 +129,7 @@
     <div class="container">© <span id="year"></span> <span data-bind="name"></span> · Built with care, hosted on GitHub Pages</div>
   </footer>
 
-  <script src="assets/js/content.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/content.js?v=3"></script>
+  <script src="assets/js/main.js?v=3"></script>
 </body>
 </html>

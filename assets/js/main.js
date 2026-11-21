@@ -43,42 +43,75 @@
   $("#interests").innerHTML = S.interests.map((i) => `<li>${txt(i)}</li>`).join("");
   $("#news").innerHTML = S.news.map((n) => `<li><time>${txt(n.date)}</time><span>${txt(n.text)}</span></li>`).join("");
 
-  // Publications
-  const types = ["all", ...new Set(S.publications.map((p) => p.type))];
-  const typeLabel = (t) => (t === "all" ? "All" : t[0].toUpperCase() + t.slice(1));
-  const boldMe = (a) => txt(a).replace(new RegExp(S.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"), `<strong>${esc(S.name)}</strong>`);
+  // Publications — loaded from assets/data/publications.json (auto-updated daily)
+  const PS = S.publicationSettings || { featured: [], hidden: [], extra: [] };
+  const TYPE_LABELS = { all: "All", journal: "Journal", conference: "Conference", chapter: "Book chapter", book: "Book",
+    preprint: "Preprint", dataset: "Dataset", thesis: "Thesis", registration: "Protocol", other: "Other" };
+  const typeLabel = (t) => TYPE_LABELS[t] || t[0].toUpperCase() + t.slice(1);
+  const lc = (x) => String(x || "").toLowerCase();
+  function authorsHtml(list) {
+    if (!Array.isArray(list)) list = String(list).split(/,\s*/);
+    const me = list.indexOf(S.name);
+    let shown = list.map((a, i) => ({ a, i }));
+    if (list.length > 12) {
+      const keep = new Set([0, 1, 2, list.length - 1, me - 1, me, me + 1].filter((i) => i >= 0));
+      shown = shown.filter((x) => keep.has(x.i));
+    }
+    let out = [], prev = -1;
+    shown.forEach(({ a, i }) => { if (i - prev > 1) out.push("…"); out.push(a === S.name ? `<strong>${esc(a)}</strong>` : esc(a)); prev = i; });
+    return out.join(", ") + (list.length > 12 ? ` <span class="pub__n">(${list.length} authors)</span>` : "");
+  }
+  let PUBS = [];
   function renderPubs(filter) {
-    const list = S.publications.filter((p) => filter === "all" || p.type === filter).sort((a, b) => b.year - a.year);
+    const list = PUBS.filter((p) => filter === "all" || p.type === filter);
     let html = "", year = null;
     list.forEach((p) => {
-      if (p.year !== year) { year = p.year; html += `<h3 class="pub-year">${year}</h3>`; }
+      if (p.year !== year) { year = p.year; html += `<h3 class="pub-year">${esc(year || "Undated")}</h3>`; }
       const links = Object.entries(p.links || {}).filter(([, v]) => v)
         .map(([k, v]) => `<a href="${esc(v)}" target="_blank" rel="noopener">${esc(k)}</a>`).join("");
+      const authorsTxt = (Array.isArray(p.authors) ? p.authors.join(", ") : p.authors);
+      const cites = p.citations ? `<span class="pub__cites">${p.citations} citation${p.citations > 1 ? "s" : ""}</span>` : "";
       html += `<article class="pub">
         <span class="pub__badge badge--${esc(p.type)}">${esc(typeLabel(p.type))}</span>
         <div>
-          <h3>${txt(p.title)}${p.featured ? '<span class="star" title="Selected">★</span>' : ""}</h3>
-          <p class="pub__authors">${boldMe(p.authors)}</p>
-          <p class="pub__venue">${txt(p.venue)}</p>
-          <div class="pub__links">${links}<button data-cite="${esc(p.authors + ". " + p.title + ". " + p.venue + ", " + p.year + ".")}">Cite</button></div>
+          <h3>${esc(p.title)}${p.featured ? '<span class="star" title="Selected">★</span>' : ""}</h3>
+          <p class="pub__authors">${authorsHtml(p.authors)}</p>
+          <p class="pub__venue">${esc(p.venue)}</p>
+          <div class="pub__links">${links}<button data-cite="${esc(authorsTxt + ". " + p.title + ". " + p.venue + ", " + p.year + "." + (p.doi ? " https://doi.org/" + p.doi : ""))}">Cite</button>${cites}</div>
         </div></article>`;
     });
     $("#pubList").innerHTML = html || "<p>No publications in this category yet.</p>";
   }
-  $("#pubFilters").innerHTML = types.map((t, i) => `<button class="${i ? "" : "active"}" data-f="${t}">${typeLabel(t)}</button>`).join("");
   $("#pubFilters").addEventListener("click", (e) => {
     const b = e.target.closest("button"); if (!b) return;
     $("#pubFilters .active").classList.remove("active"); b.classList.add("active"); renderPubs(b.dataset.f);
   });
   $("#pubList").addEventListener("click", (e) => {
     const b = e.target.closest("[data-cite]"); if (!b) return;
-    navigator.clipboard?.writeText(b.dataset.cite).then(() => { b.textContent = "Copied ✓"; setTimeout(() => (b.textContent = "Cite"), 1500); });
+    const done = () => { b.textContent = "Copied ✓"; setTimeout(() => (b.textContent = "Cite"), 1500); };
+    navigator.clipboard ? navigator.clipboard.writeText(b.dataset.cite).then(done, () => {}) : null;
   });
-  renderPubs("all");
-  if (S.metrics) {
-    const m = S.metrics;
-    $("#metrics").innerHTML = `<span><b>${S.publications.length}</b> publications</span><span><b>${m.citations}</b> citations</span><span>h-index <b>${m.hindex}</b></span><span>i10-index <b>${m.i10}</b></span><span class="metrics__src">${esc(m.source)}, ${esc(m.asOf)}</span>`;
-  } else $("#metrics").remove();
+  $("#pubList").innerHTML = '<p class="pub-loading">Loading publications…</p>';
+  fetch("assets/data/publications.json", { cache: "no-cache" })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then((data) => {
+      const hidden = new Set((PS.hidden || []).map(lc)), feat = new Set((PS.featured || []).map(lc));
+      PUBS = [...data.publications, ...(PS.extra || [])]
+        .filter((p) => !hidden.has(lc(p.doi)))
+        .map((p) => ({ ...p, featured: p.featured || feat.has(lc(p.doi)) }))
+        .sort((a, b) => (b.year || 0) - (a.year || 0) || String(b.date || "").localeCompare(String(a.date || "")));
+      const order = Object.keys(TYPE_LABELS);
+      const types = ["all", ...[...new Set(PUBS.map((p) => p.type))].sort((a, b) => order.indexOf(a) - order.indexOf(b))];
+      $("#pubFilters").innerHTML = types.map((t, i) => `<button class="${i ? "" : "active"}" data-f="${t}">${typeLabel(t)}</button>`).join("");
+      renderPubs("all");
+      const m = data.metrics || {};
+      $("#metrics").innerHTML = `<span><b>${PUBS.length}</b> publications</span><span><b>${m.citations ?? "–"}</b> citations</span><span>h-index <b>${m.hindex ?? "–"}</b></span>`
+        + `<span class="metrics__src">Updated automatically from ${esc(m.source || "OpenAlex")} &amp; ORCID${data.updated ? " · " + esc(data.updated) : ""}</span>`;
+    })
+    .catch(() => {
+      $("#metrics").remove();
+      $("#pubList").innerHTML = `<p>The publication list could not be loaded. See my <a href="${esc(S.links.scholar)}" target="_blank" rel="noopener">Google Scholar profile</a>.</p>`;
+    });
 
   // Activities
   $("#activityGrid").innerHTML = S.activities.map((a) => `
@@ -93,6 +126,75 @@
   if (S.supervision?.length) $("#supervision").innerHTML = S.supervision.map((s) => `<li>${txt(s)}</li>`).join("");
   else $("#supervisionWrap").remove();
 
+
+  // About illustration: live agent-based SIR epidemic simulation
+  (function sim() {
+    const cv = $("#simCanvas"); if (!cv) return;
+    const ctx = cv.getContext("2d");
+    const COL = { s: "#8fb8d8", i: "#e8798b", r: "#5fb3a8" };
+    const N = 140, RAD = 3.2, CONTACT = 13, P_INF = 0.28, T_REC = 360, LINK = 46;
+    let W = 0, H = 0, agents = [], running = true, raf = 0;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function size() {
+      const r = cv.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
+      W = r.width; H = r.height; cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+    }
+    function reset() {
+      agents = Array.from({ length: N }, () => {
+        const a = Math.random() * Math.PI * 2, v = 0.35 + Math.random() * 0.45;
+        return { x: Math.random() * W, y: Math.random() * H * 0.82, vx: Math.cos(a) * v, vy: Math.sin(a) * v, st: "s", t: 0 };
+      });
+      for (let k = 0; k < 3; k++) agents[k].st = "i";
+    }
+    function step() {
+      const hMax = H * 0.82;
+      for (const a of agents) {
+        a.x += a.vx; a.y += a.vy;
+        if (a.x < RAD || a.x > W - RAD) a.vx *= -1;
+        if (a.y < RAD || a.y > hMax - RAD) a.vy *= -1;
+        a.x = Math.max(RAD, Math.min(W - RAD, a.x)); a.y = Math.max(RAD, Math.min(hMax - RAD, a.y));
+        if (a.st === "i" && ++a.t > T_REC) a.st = "r";
+      }
+      for (const a of agents) if (a.st === "i")
+        for (const b of agents) if (b.st === "s") {
+          const dx = a.x - b.x, dy = a.y - b.y;
+          if (dx * dx + dy * dy < CONTACT * CONTACT && Math.random() < P_INF) { b.st = "i"; b.t = 0; }
+        }
+    }
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      ctx.lineWidth = 1;
+      for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
+        const a = agents[i], b = agents[j], dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy;
+        if (d2 < LINK * LINK) {
+          const hot = a.st === "i" || b.st === "i";
+          ctx.strokeStyle = hot ? `rgba(232,121,139,${0.35 * (1 - Math.sqrt(d2) / LINK)})` : `rgba(160,180,215,${0.14 * (1 - Math.sqrt(d2) / LINK)})`;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      let c = { s: 0, i: 0, r: 0 };
+      for (const a of agents) {
+        c[a.st]++;
+        if (a.st === "i") { ctx.fillStyle = "rgba(232,121,139,.18)"; ctx.beginPath(); ctx.arc(a.x, a.y, RAD * 3, 0, 7); ctx.fill(); }
+        ctx.fillStyle = COL[a.st]; ctx.beginPath(); ctx.arc(a.x, a.y, RAD, 0, 7); ctx.fill();
+      }
+      $("#simS").textContent = c.s; $("#simI").textContent = c.i; $("#simR").textContent = c.r;
+      return c;
+    }
+    let idle = 0;
+    function loop() {
+      step(); const c = draw();
+      if (c.i === 0 && ++idle > 120) { idle = 0; reset(); }
+      if (running) raf = requestAnimationFrame(loop);
+    }
+    size(); reset();
+    if (reduce) { for (let k = 0; k < 260; k++) step(); draw(); return; }
+    new IntersectionObserver(([e]) => {
+      running = e.isIntersecting; cancelAnimationFrame(raf); if (running) raf = requestAnimationFrame(loop);
+    }).observe(cv);
+    draw();
+    addEventListener("resize", () => { const w = W, h = H; size(); agents.forEach((a) => { a.x *= W / (w || W); a.y *= H / (h || H); }); });
+  })();
 
   // Theme toggle
   $("#themeToggle").addEventListener("click", () => {

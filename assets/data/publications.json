@@ -1,0 +1,349 @@
+{
+ "orcid": "0000-0003-1671-7631",
+ "metrics": {
+  "citations": 80,
+  "hindex": 4,
+  "i10": 1,
+  "works": 15,
+  "source": "OpenAlex"
+ },
+ "publications": [
+  {
+   "year": 2026,
+   "date": "2026-11-05",
+   "type": "preprint",
+   "title": "Cross-protective potential of Zaire ebolavirus-targeted vaccines against Bundibugyo virus: search strategies and review methods",
+   "authors": [
+    "Godwill W.K. Ilunga"
+   ],
+   "venue": "OSF Preprints",
+   "doi": "10.17605/osf.io/uy6nr",
+   "citations": 0,
+   "links": {
+    "doi": "https://doi.org/10.17605/osf.io/uy6nr",
+    "pdf": "https://osf.io/uy6nr"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2026,
+   "date": "2026-09-07",
+   "type": "registration",
+   "title": "A Systematic Literature Review of Deep Learning Model Optimization for Skin Lesion Detection and Classification in Resource-Constrained Settings",
+   "authors": [
+    "Kandolo Herman",
+    "Godwill W.K. Ilunga",
+    "Selain K. Kasereka"
+   ],
+   "venue": "Open Science Framework",
+   "doi": "10.17605/osf.io/de85w",
+   "citations": 0,
+   "links": {
+    "doi": "https://doi.org/10.17605/osf.io/de85w"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2026,
+   "date": "2026-06-13",
+   "type": "dataset",
+   "title": "OpenRuund",
+   "authors": [
+    "Eliezer Mununga",
+    "Selain K. Kasereka",
+    "Godwill W.K. Ilunga",
+    "Christopher Mwanza",
+    "Egla Mutale"
+   ],
+   "venue": "Hugging Face",
+   "doi": "10.57967/hf/9146",
+   "citations": 0,
+   "links": {
+    "doi": "https://doi.org/10.57967/hf/9146"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2026,
+   "date": "2026-01-01",
+   "type": "conference",
+   "title": "From IoT to AIoT: Advancing Smart Healthcare through Connected Intelligence",
+   "authors": [
+    "Selain K. Kasereka",
+    "Godwill W.K. Ilunga",
+    "Heriol F. Zeufack",
+    "Alidor M. Mbayandjambe",
+    "Jean-Roger M. Bansimba",
+    "Ruffin-Benoît Mpoy Ngoie",
+    "René Manassé Galekwa",
+    "Esteve Hassan",
+    "Tasho Tashev",
+    "Kyandoghere Kyamakya"
+   ],
+   "venue": "Procedia Computer Science, vol. 280, pp. 327–336",
+   "doi": "10.1016/j.procs.2026.04.043",
+   "citations": 1,
+   "links": {
+    "doi": "https://doi.org/10.1016/j.procs.2026.04.043"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2026,
+   "date": "2026-01-01",
+   "type": "conference",
+   "title": "Speech Dataset Creation in Low-Resource Contexts: A Systematic Review",
+   "authors": [
+    "Godwill W.K. Ilunga",
+    "Selain K. Kasereka",
+    "Eliezer Mununga",
+    "Credo Kanumbedi",
+    "Onesime M. Mbulayi",
+    "Israel M.W. Mwamba",
+    "Rebecca Ryakitimbo",
+    "Tasho Tashev"
+   ],
+   "venue": "Procedia Computer Science, vol. 280, pp. 568–575",
+   "doi": "10.1016/j.procs.2026.04.072",
+   "citations": 0,
+   "links": {
+    "doi": "https://doi.org/10.1016/j.procs.2026.04.072"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2026,
+   "date": "2026-01-01",
+   "type": "conference",
+   "title": "Nonstandard Finite Difference Schemes for Uncertain Epidemic Dynamics: From Fuzzy ODEs to AI-Enhanced Discretization",
+   "authors": [
+    "Selain K. Kasereka",
+    "Dany N. Kasongo",
+    "Godwill W.K. Ilunga",
+    "Dauphin K W Kamwanga",
+    "Kyandoghere Kyamakya"
+   ],
+   "venue": "Procedia Computer Science, vol. 290, pp. 846–852",
+   "doi": "10.1016/j.procs.2026.08.471",
+   "citations": 0,
+   "links": {
+    "doi": "https://doi.org/10.1016/j.procs.2026.08.471",
+    "pdf": "https://www.sciencedirect.com/science/article/pii/S1877050926031078/pdf"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2025,
+   "date": "2025-11-06",
+   "type": "conference",
+   "title": "Smart Irrigation for Precision Agriculture: A Pathway to Sustainable Farming in Low-Income Regions",
+   "authors": [
+    "Selain K. Kasereka",
+    "Tasho Tashev",
+    "Yves-Christophane N. Medagbe",
+    "Okurwoth V. Ocama",
+    "Godwill W.K. Ilunga",
+    "Elam Kyungu",
+    "Kyandoghere Kyamakya"
+   ],
+   "venue": "International Conference on Big Data, Knowledge and Control Systems Engineering (BdKCSE), pp. 1–9",
+   "doi": "10.1109/bdkcse67969.2025.11300531",
+   "citations": 2,
+   "links": {
+    "doi": "https://doi.org/10.1109/bdkcse67969.2025.11300531"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2025,
+   "date": "2025-01-01",
+   "type": "journal",
+   "title": "Enhancing Building Evacuation Efficiency in Case of Fire Breakout by Integrating Evacuee Categorization Into an Agent-Based Simulation",
+   "authors": [
+    "Selain K. Kasereka",
+    "Noella E. Kalondji",
+    "Godwill W.K. Ilunga",
+    "Ruffin-Benoît Mpoy Ngoie",
+    "Kyandoghere Kyamakya",
+    "Nathanael Mulenda Kasoro"
+   ],
+   "venue": "IEEE Access, vol. 13, pp. 10595–10618",
+   "doi": "10.1109/access.2025.3525480",
+   "citations": 7,
+   "links": {
+    "doi": "https://doi.org/10.1109/access.2025.3525480"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2025,
+   "date": "2025-01-01",
+   "type": "conference",
+   "title": "Enhancing Building Safety: A Brief Review of Agent-Based Modeling for Fire Evacuation Simulation",
+   "authors": [
+    "Selain K. Kasereka",
+    "Ortega M. Kabwe",
+    "Maria W.K. Kinyanta",
+    "Audrey L. Kasongo",
+    "Godwill W.K. Ilunga",
+    "Katya Muhambya",
+    "Tasho Tashev",
+    "Kyandoghere Kyamakya"
+   ],
+   "venue": "Procedia Computer Science, vol. 257, pp. 668–675",
+   "doi": "10.1016/j.procs.2025.03.086",
+   "citations": 7,
+   "links": {
+    "doi": "https://doi.org/10.1016/j.procs.2025.03.086"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2025,
+   "date": "2025-01-01",
+   "type": "conference",
+   "title": "Leveraging Artificial Intelligence for Advancements in Mental Disorders: A Short Review",
+   "authors": [
+    "Selain K. Kasereka",
+    "Kenny N. Tshibangu",
+    "Myriam M. Nyembo",
+    "Lionel K. Tshitenge",
+    "Marina K. Muzindusi",
+    "Godwill W.K. Ilunga",
+    "Soufian Ben Amor",
+    "Christian Domilongo Bope",
+    "Tasho Tashev",
+    "Kyandoghere Kyamakya"
+   ],
+   "venue": "Procedia Computer Science, vol. 257, pp. 676–683",
+   "doi": "10.1016/j.procs.2025.03.087",
+   "citations": 5,
+   "links": {
+    "doi": "https://doi.org/10.1016/j.procs.2025.03.087"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2025,
+   "date": "2025-01-01",
+   "type": "conference",
+   "title": "Enhancing Healthcare in Africa: A Brief Review of Lung Cancer Prediction and Detection",
+   "authors": [
+    "Jonathan K. Pinto",
+    "Selain K. Kasereka",
+    "Pierre T. Muchapa",
+    "Godwill W.K. Ilunga",
+    "Alidor M. Mbayandjambe",
+    "Jiregna K. Olani",
+    "Tasho Tashev",
+    "Kyandoghere Kyamakya"
+   ],
+   "venue": "Procedia Computer Science, vol. 265, pp. 390–397",
+   "doi": "10.1016/j.procs.2025.07.196",
+   "citations": 1,
+   "links": {
+    "doi": "https://doi.org/10.1016/j.procs.2025.07.196"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2025,
+   "date": "2025-01-01",
+   "type": "preprint",
+   "title": "Corpus Voice Dataset Creation in Low-Resource Contexts: A systematic review",
+   "authors": [
+    "Godwill W.K. Ilunga"
+   ],
+   "venue": "OSF Preprints",
+   "doi": "10.17605/osf.io/r9dje",
+   "citations": 1,
+   "links": {
+    "doi": "https://doi.org/10.17605/osf.io/r9dje"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2025,
+   "date": "2025-01-01",
+   "type": "preprint",
+   "title": "Applications of Advanced Statistical Learning for detection, prediction and Diagnosis/Prognosis in Communicable and Non-communicable Diseases: A Scoping Review",
+   "authors": [
+    "Godwill W.K. Ilunga"
+   ],
+   "venue": "OSF Preprints",
+   "doi": "10.17605/osf.io/ebgxj",
+   "citations": 0,
+   "links": {
+    "doi": "https://doi.org/10.17605/osf.io/ebgxj"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2024,
+   "date": "2024-12-20",
+   "type": "conference",
+   "title": "An Empirical Study on Insider Threats Towards Crime Prevention Through Environmental Design (CPTED) : A Student Case Study",
+   "authors": [
+    "Robert Makila Beni",
+    "Landry Mbale",
+    "Jean-Auguste Muhau",
+    "Godwill W.K. Ilunga"
+   ],
+   "venue": "Lecture Notes in Networks and Systems, pp. 447–463",
+   "doi": "10.1007/978-3-031-74443-3_27",
+   "citations": 0,
+   "links": {
+    "doi": "https://doi.org/10.1007/978-3-031-74443-3_27"
+   },
+   "source": "openalex"
+  },
+  {
+   "year": 2024,
+   "date": "2024-08-05",
+   "type": "preprint",
+   "title": "Artificial Intelligence for Public Health Surveillance in Africa: Applications and Opportunities",
+   "authors": [
+    "Jean Marie Tshimula",
+    "Kalengayi, Mitterrand",
+    "Dieumerci Makenga",
+    "Dorcas Lilonge",
+    "Marius Iyeze Asumani",
+    "Déborah Madiya",
+    "Élie Nkuba Kalonji",
+    "Hugues Kanda",
+    "René Manassé Galekwa",
+    "Josias Kumbu",
+    "Hardy Mikese",
+    "Grace Tshimula",
+    "Jean Tshibangu Muabila",
+    "Christian N. Mayemba",
+    "D’Jeff K. Nkashama",
+    "Kalonji Kalala",
+    "Steve Tsham Mpinda Ataky",
+    "Tighana Wenge Basele",
+    "Mbuyi Mukendi Didier",
+    "Selain K. Kasereka",
+    "Maximilien Vakambi Dialufuma",
+    "Godwill W.K. Ilunga",
+    "Lionel Muyuku",
+    "Jean-Paul Kimpesa",
+    "Dominique Muteba",
+    "Aaron Aruna Abedi",
+    "Lambert Mukendi Ntobo",
+    "Gloria Mavinga Bundutidi",
+    "Désire Kulimba Mashinda",
+    "Emmanuel Kabengele Mpinga",
+    "Nathanael Mulenda Kasoro"
+   ],
+   "venue": "arXiv preprint arXiv:2408.02575",
+   "doi": "10.48550/arxiv.2408.02575",
+   "citations": 57,
+   "links": {
+    "arxiv": "https://arxiv.org/abs/2408.02575",
+    "pdf": "https://arxiv.org/pdf/2408.02575"
+   },
+   "source": "openalex"
+  }
+ ],
+ "updated": "2026-11-21"
+}
