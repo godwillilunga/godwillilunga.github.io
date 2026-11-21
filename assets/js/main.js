@@ -93,11 +93,6 @@
   if (S.supervision?.length) $("#supervision").innerHTML = S.supervision.map((s) => `<li>${txt(s)}</li>`).join("");
   else $("#supervisionWrap").remove();
 
-  // Projects
-  $("#projectGrid").innerHTML = S.projects.map((p) => `
-    <div class="card project"><h3>${txt(p.title)}</h3><p>${txt(p.text)}</p>
-      <div class="tags">${p.tags.map((t) => `<span>${esc(t)}</span>`).join("")}</div>
-      ${p.link ? `<a href="${esc(p.link)}" target="_blank" rel="noopener">View project →</a>` : ""}</div>`).join("");
 
   // Theme toggle
   $("#themeToggle").addEventListener("click", () => {
