@@ -1,7 +1,7 @@
 {
  "orcid": "0000-0003-1671-7631",
  "metrics": {
-  "citations": 83,
+  "citations": 86,
   "hindex": 4,
   "i10": 1,
   "works": 15,
@@ -169,7 +169,7 @@
    ],
    "venue": "IEEE Access, vol. 13, pp. 10595–10618",
    "doi": "10.1109/access.2025.3525480",
-   "citations": 7,
+   "citations": 8,
    "links": {
     "doi": "https://doi.org/10.1109/access.2025.3525480"
    },
@@ -192,7 +192,7 @@
    ],
    "venue": "Procedia Computer Science, vol. 257, pp. 668–675",
    "doi": "10.1016/j.procs.2025.03.086",
-   "citations": 7,
+   "citations": 8,
    "links": {
     "doi": "https://doi.org/10.1016/j.procs.2025.03.086"
    },
@@ -337,7 +337,7 @@
    ],
    "venue": "arXiv preprint arXiv:2408.02575",
    "doi": "10.48550/arxiv.2408.02575",
-   "citations": 59,
+   "citations": 60,
    "links": {
     "arxiv": "https://arxiv.org/abs/2408.02575",
     "pdf": "https://arxiv.org/pdf/2408.02575"
@@ -345,5 +345,5 @@
    "source": "openalex"
   }
  ],
- "updated": "2026-11-25"
+ "updated": "2026-11-26"
 }
